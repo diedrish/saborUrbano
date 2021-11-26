@@ -6,6 +6,8 @@
 package saborurbano;
 
 import Vistas.Login.Login;
+import controlador.Conexion;
+import java.sql.Connection;
 
 /**
  *
@@ -17,9 +19,12 @@ public class SaborUrbano {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       Login l=new Login();
-       l.setLocationRelativeTo(null);
-       l.setVisible(true);
+
+       
+
+        Login l = new Login();
+        l.setLocationRelativeTo(null);
+        l.setVisible(true);
     }
-    
+
 }

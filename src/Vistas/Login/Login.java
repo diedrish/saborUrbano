@@ -7,6 +7,7 @@ package Vistas.Login;
  */
 import Vistas.Apariencia.NimbusApariencia;
 import com.sun.awt.AWTUtilities;
+import controlador.Conexion;
 import controlador.DatosSesion;
 import controlador.Metodos;
 import java.awt.Menu;
@@ -14,6 +15,7 @@ import java.awt.Shape;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.geom.RoundRectangle2D;
+import java.sql.Connection;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import menu.menuPrincipal;
@@ -46,8 +48,8 @@ public class Login extends javax.swing.JFrame {
         }
         initComponents();
 
-         try {
-             setIconImage(new ImageIcon(getClass().getResource("/images/logopng.png")).getImage());
+        try {
+            setIconImage(new ImageIcon(getClass().getResource("/images/logopng.png")).getImage());
         } catch (Exception e) {
         }
         //
@@ -165,59 +167,61 @@ public class Login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-Metodos m = new Metodos();
+    Metodos m = new Metodos();
     String sql = "";
 
     void logeo() {
         String bloc[] = null;
-//        String numeroMaquina = "";
-//        String caja = "";
-//        String sucursal = "";
-//        String ip = "";
-//        String usuariobd = "";
-//        String clavebd = "";
-//        String puerto = "";
-//        String bd="";
-//
-//        //maquina 0
-//        //caja  1
-//        //sucursal 2
-//        try {
-//            bloc = m.leerTxt("C:\\Windows\\configv.txt").split("-");
-//            numeroMaquina = bloc[0];
-//
-//        } catch (Exception e) {
-//            bloc = null;
-//            numeroMaquina = "";
-//        }
-//        if (bloc[0].isEmpty() || bloc == null) {
-//            JOptionPane.showMessageDialog(null, "ERROR I-AFW");
-//        } else {
-//            DatosSesion.numeroMaquina = numeroMaquina;
-//            sucursal = bloc[2];
-//            ip = bloc[3];
-//            usuariobd = bloc[4];
-//            clavebd = bloc[5];
-//            puerto = bloc[6];
-//            bd=bloc[7];
-//
-//            System.out.println("esta es la sucursal" + sucursal);
-//            System.out.println(ip);
-//            System.out.println(usuariobd);
-//            System.out.println(clavebd);
-//            System.out.println(puerto);
-//
-//            DatosSesion.ip = ip;
-//            DatosSesion.bduser = usuariobd;
-//            DatosSesion.bdpassr = clavebd;
-//            DatosSesion.puerto = puerto;
-//            DatosSesion.bd=bd;
-//
-//            DatosSesion.cod_sucursal = sucursal;
-//            String usuario = "", clave = "";
-//            usuario = txt_usuario.getText();
-//            clave = txt_clave.getText();
-//            
+        String numeroMaquina = "";
+        String caja = "";
+        String sucursal = "";
+        String ip = "";
+        String usuariobd = "";
+        String clavebd = "";
+        String puerto = "";
+        String bd = "";
+
+        //maquina 0
+        //caja  1
+        //sucursal 2
+        try {
+            bloc = m.leerTxt("C:\\Windows\\configv.txt").split("-");
+            numeroMaquina = bloc[0];
+
+        } catch (Exception e) {
+            bloc = null;
+            numeroMaquina = "";
+        }
+        if (bloc[0].isEmpty() || bloc == null) {
+            JOptionPane.showMessageDialog(null, "ERROR I-AFW");
+        } else {
+            DatosSesion.numeroMaquina = numeroMaquina;
+            sucursal = bloc[2];
+            ip = bloc[3];
+            usuariobd = bloc[4];
+            clavebd = bloc[5];
+            puerto = bloc[6];
+            bd = bloc[7];
+
+            DatosSesion.ip = ip;
+            DatosSesion.bduser = usuariobd;
+            DatosSesion.bdpassr = clavebd;
+            DatosSesion.puerto = puerto;
+            DatosSesion.bd = bd;
+
+            DatosSesion.cod_sucursal = sucursal;
+            String usuario = "", clave = "";
+            usuario = txt_usuario.getText();
+            clave = txt_clave.getText();
+
+            Connection con = null;
+            Conexion.getConexion();
+
+            this.dispose();
+            menuPrincipal m = new menuPrincipal();
+            m.setLocationRelativeTo(null);
+            m.setVisible(true);
+
 //            DatosSesion.nom_suc=m.obtener_codigoDeCampo("select * from sucursales where idSucursal='"+sucursal+"'","nombre");
 //            
 //            sql = "select * from empleados where  BINARY usuario='" + usuario + "' and BINARY clave='" + clave + "' and estado='ACTIVO' and idSucursal='" + sucursal + "'";
@@ -249,7 +253,7 @@ Metodos m = new Metodos();
 //                if (m.SiRegistroExiste(sql)) {
 //                    DatosSesion.numeroCaja = m.obtener_codigoDeCampo(sql, "idNumCaja");
 //                }
-//                //fecha para mientras
+//                fecha para mientras
 //                switch (nivel) {
 //                   
 //
@@ -259,12 +263,8 @@ Metodos m = new Metodos();
 //                JOptionPane.showMessageDialog(null, "ACCESO DENEGAGO \n VERIFIQUE QUE SUS CREDENCIALES \n ESTEN BIEN"
 //                        + " ESCRITAS( SENSIBLE A MINUSCULAS Y MAYUSCULAS )");
 //            }
-//
-//        }
-        this.dispose();
-        menuPrincipal m = new menuPrincipal();
-        m.setLocationRelativeTo(null);
-        m.setVisible(true);
+        }
+
     }
 
     private void jLabel9KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel9KeyPressed

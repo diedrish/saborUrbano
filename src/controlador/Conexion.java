@@ -28,7 +28,7 @@ public class Conexion {
             connect = DriverManager
                     .getConnection("jdbc:mysql://"+DatosSesion.ip+"/"+DatosSesion.bd+"?user="+DatosSesion.bduser+"&password="+DatosSesion.bdpassr+"");
             //Mensaje de conexion realizada
-            //System.out.println("Conexion realizada");
+         System.out.println("Conexion realizada");
         } catch (Exception e) {
             System.out.println(e);
         }

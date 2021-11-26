@@ -63,16 +63,6 @@ public class Metodos {
 
     
 
-    public String traerNumeroMovimiento(String id, String sucursal) {
-        String numero = "", sql = "";
-
-        sql = "select (actual+1)as actual from movimientos where idMovimiento='" + id + "' and idSucursal='" + sucursal + "'";
-
-        numero = this.obtener_codigoDeCampo(sql, "actual");
-        return numero;
-
-    }
-
     //
     public String seleccionar_imagen(String documento, String variable, String dui) {
         String ruta = "";
